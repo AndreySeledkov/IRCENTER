@@ -1,0 +1,162 @@
+
+
+
+.reg_block {
+	overflow: hidden;
+	display: block;
+	margin: 0 10px;
+}
+
+a.social {
+	display: block;
+	width: 293px;
+	height: 54px;
+	margin: 10px auto;
+	padding-left: 65px;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=80);
+	 -moz-opacity: 0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+	font-family: "Tahoma";
+	font-size: 22px;
+	line-height: 54px;
+	text-decoration: none;
+	color: #ffffff;
+}
+a.social span {
+	font-family: "Arial";
+	font-size: 27px;
+	font-weight: bold;
+}
+a.social:hover {
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+a.social.facebook {
+	background: transparent url(/static/img/social.png) no-repeat 0 0;
+	text-shadow: #394e7d 1px 1px 0px;
+}
+a.social.vkontakte {
+	background: transparent url(/static/img/social.png) no-repeat 0 -54px;
+	text-shadow: #394e7d 1px 1px 0px;
+}
+a.social.odnoklassniki {
+	background: transparent url(/static/img/social.png) no-repeat 0 -108px;
+	text-shadow: #c05815 1px 1px 0px;
+	font-family: "Tahoma";
+	font-size: 18px;
+	line-height: 54px;
+}
+a.social.odnoklassniki span {
+	font-family: "Arial";
+	font-size: 22px;
+	font-weight: bold;
+}
+.reg_left_block {
+	float: left;
+	position: relative;
+	overflow: hidden;
+	display: block;
+	width: 488px;
+	margin-bottom: 40px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	background: #efefef;
+	border-radius: 5px;
+}
+.reg_right_block {
+	float: right;
+	position: relative;
+	overflow: hidden;
+	display: block;
+	width: 488px;
+	margin-bottom: 40px;
+	padding: 20px 0;
+}
+.reg_element {
+	float: left;
+	display: block;
+	width: 224px;
+	margin-left: 16px;
+	margin-top: 5px;
+	padding-bottom: 5px;
+}
+.reg_element.full {
+	width: 100%;
+	color: #4c4c4c;
+	font-size: 14px;
+}
+.reg_element span {
+	font-family: "Tahoma";
+	font-size: 12px;
+	color: #4c4c4c;
+}
+.reg_element input {
+	display: block;
+	width: 100%;
+	height: 32px;
+	border: 1px solid #d2d2d2;
+	border-radius: 5px;
+	font-family: "Tahoma";
+	font-size: 18px;
+	color: #1f81a0;
+}
+.reg_element.full input {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	border: none;
+}
+.reg_element input.captcha_input {
+	float: left;
+	width: 50%;
+}
+.reg_element img {
+	float: left;
+	margin-left: 5px;
+}
+.reg_element .reg_button {
+	height: 33px;
+	border-top: 1px solid #D0EB3D;
+	line-height: 31px;
+	font-size: 16px;
+}
+.reg_element .auth_button {
+	height: 33px;
+	border-top: 1px solid #ffffff;
+	line-height: 31px;
+	font-size: 16px;
+}
+.add_button {
+	width: 150px;
+	height: 33px;
+	line-height: 31px;
+	font-size: 16px;
+	text-shadow: rgba(255, 255, 255, 0.3) 1px 1px 0px;
+	color: #fbfaf9;
+	text-align: center;
+}
+#auth_block {
+	overflow: hidden;
+	display: block;
+	width: 356px;
+	margin: 0 auto;
+}
+
+
+.activate_block {
+	overflow: hidden;
+	display: block;
+	width: 480px;
+	margin: 0 auto;
+}
+.reg_add {
+	overflow: hidden;
+	display: block;
+	width: 230px;
+	margin-top: 10px;
+	margin: 0 auto;
+	border-radius: 5px;
+}

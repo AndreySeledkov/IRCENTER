@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    <%--var searchURL = "<c:url value="/search"/>";--%>
+    var extSearchURL = "<c:url value="/extsearch"/>";
+    var getChildTopicsURL = "<c:url value="/addpost/getchildtopics"/>";
+    var getRootTopicsURL = "<c:url value="/addpost/getroottopics"/>";
+    var getCountriesURL = "<c:url value="/addpost/getcountries"/>";
+    var getRegionsURL = "<c:url value="/addpost/getregions"/>";
+    var getCitiesURL = "<c:url value="/addpost/getcities"/>";
+    var getPlaceAutoCompliteURL = "<c:url value="/addpost/getplaceautocomplite"/>";
+    var getPlaceIdURL = "<c:url value="/addpost/getplaceid"/>";
+    var getCountryURL = "<c:url value="/addpost/getcountry"/>";
+    var getRegionURL = "<c:url value="/addpost/getregion"/>";
+    var getCityURL = "<c:url value="/addpost/getcity"/>";
+    var registrationAvailabilityURL = "<c:url value="/registration/availability"/>";
+    var rootURL = "<c:url value="/"/>";
+    var registrationURL = "<c:url value="/registration"/>";
+    var activationURL = "<c:url value="/registration/activate"/>";
+    var rememberPasswordURL = "<c:url value="/registration/rememberpassword"/>";
+    var deleteRegByUidURL = "<c:url value="/registration/deleteregbyuid/"/>";
+    var deleteRegByUserNameURL = "<c:url value="/registration/deleteregbyusername/"/>";
+    var cabinetURL = "<c:url value="/cabinet/addpost"/>";
+    var createThemeURL = "<c:url value="/forum/newtheme"/>"
+    var addForumMessageURL = "<c:url value="/forum/addmessage"/>"
+
+</script>

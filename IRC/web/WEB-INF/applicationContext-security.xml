@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+
+    <http pattern="/admin/**" create-session="stateless">
+        <intercept-url pattern='/**' access="ROLE_ADMIN"/>
+        <http-basic/>
+    </http>
+
+    <http use-expressions="true" entry-point-ref="authenticationEntryPoint">
+        <intercept-url pattern="/" access="permitAll()"/>
+
+        <intercept-url pattern="/search/**" access="permitAll()"/>
+        <intercept-url pattern="/search*" access="permitAll()"/>
+
+        <intercept-url pattern="/biography/**" access="permitAll()"/>
+        <intercept-url pattern="/biography*" access="permitAll()"/>
+
+        <intercept-url pattern="/signup**" access="permitAll()"/>
+        <intercept-url pattern="/signup*" access="permitAll()"/>
+
+        <intercept-url pattern="/svid_online/**" access="permitAll()"/>
+        <intercept-url pattern="/svid_online*" access="permitAll()"/>
+
+        <intercept-url pattern="/programm_tv/**" access="permitAll()"/>
+        <intercept-url pattern="/programm_tv*" access="permitAll()"/>
+
+        <intercept-url pattern="/partner/**" access="permitAll()"/>
+        <intercept-url pattern="/partner*" access="permitAll()"/>
+
+        <intercept-url pattern="/calender/**" access="permitAll()"/>
+        <intercept-url pattern="/calendar*" access="permitAll()"/>
+
+        <intercept-url pattern="/book/**" access="permitAll()"/>
+        <intercept-url pattern="/book*" access="permitAll()"/>
+
+        <intercept-url pattern="/city/**" access="permitAll()"/>
+        <intercept-url pattern="/city*" access="permitAll()"/>
+
+        <intercept-url pattern="/molodejhka/**" access="permitAll()"/>
+        <intercept-url pattern="/molodejhka*" access="permitAll()"/>
+
+        <intercept-url pattern="/add_molodejhka_p/**" access="permitAll()"/>
+        <intercept-url pattern="/add_molodejhka_p*" access="permitAll()"/>
+
+        <intercept-url pattern="/add_molodejhka_v/**" access="permitAll()"/>
+        <intercept-url pattern="/add_molodejhka_v*" access="permitAll()"/>
+
+        <intercept-url pattern="/like/**" access="permitAll()"/>
+        <intercept-url pattern="/like*" access="permitAll()"/>
+
+        <intercept-url pattern="/comment/**" access="permitAll()"/>
+        <intercept-url pattern="/comment*" access="permitAll()"/>
+
+        <intercept-url pattern="/support/**" access="permitAll()"/>
+        <intercept-url pattern="/support*" access="permitAll()"/>
+
+        <intercept-url pattern="/feedback/**" access="permitAll()"/>
+        <intercept-url pattern="/feedback*" access="permitAll()"/>
+
+        <intercept-url pattern="/image/**" access="permitAll()"/>
+        <intercept-url pattern="/image*" access="permitAll()"/>
+        <intercept-url pattern="/favicon.ico" access="permitAll()"/>
+
+
+        <intercept-url pattern="/fbauth*" access="permitAll()"/>
+        <intercept-url pattern="/fbauth/**" access="permitAll()"/>
+
+        <intercept-url pattern="/vkauth*" access="permitAll()"/>
+        <intercept-url pattern="/vkauth/**" access="permitAll()"/>
+
+        <intercept-url pattern="/mailRuAuth*" access="permitAll()"/>
+        <intercept-url pattern="/mailRuAuth/**" access="permitAll()"/>
+
+        <intercept-url pattern="/auth*" access="permitAll()"/>
+        <intercept-url pattern="/auth/**" access="permitAll()"/>
+
+        <!-- social-->
+
+        <intercept-url pattern="/messages*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/messages/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/messages*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/messages/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/profile*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/profile/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/profile*" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/profile/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/friends/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/friends*" access="hasRole('ROLE_USER')"/>
+
+        <intercept-url pattern="/friends/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/friends*" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/location/**" access="permitAll()"/>
+        <intercept-url pattern="/location*" access="permitAll()"/>
+        <intercept-url pattern="/edit/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/edit*" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/all_edit_profile_entity/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/all_edit_profile_entity*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/all_edit_profile_entity/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/all_edit_profile_entity*" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/groups/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/groups*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/groups/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/groups*" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/favorite/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/favorite*" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/favorite/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/favorite*" access="hasRole('ROLE_ADMIN')"/>
+        <!---->
+
+
+        <intercept-url pattern="/forum*" access="permitAll()"/>
+        <intercept-url pattern="/forum/**" access="permitAll()"/>
+
+
+        <intercept-url pattern="/text_evidence*" access="permitAll()"/>
+        <intercept-url pattern="/text_evidence/**" access="permitAll()"/>
+
+        <intercept-url pattern="/video_evidence*" access="permitAll()"/>
+        <intercept-url pattern="/video_evidence/**" access="permitAll()"/>
+
+        <intercept-url pattern="/minutes_to_god*" access="permitAll()"/>
+        <intercept-url pattern="/minutes_to_god/**" access="permitAll()"/>
+
+        <intercept-url pattern="/secret_spiritual_world*" access="permitAll()"/>
+        <intercept-url pattern="/secret_spiritual_world/**" access="permitAll()"/>
+
+        <intercept-url pattern="/tv*" access="permitAll()"/>
+        <intercept-url pattern="/tv/**" access="permitAll()"/>
+
+        <intercept-url pattern="/tv_online*" access="permitAll()"/>
+        <intercept-url pattern="/tv_online/**" access="permitAll()"/>
+
+        <intercept-url pattern="/img/**" access="permitAll()"/>
+        <intercept-url pattern="/static/**" access="permitAll()"/>
+        <!--<intercept-url pattern="/registration*" access="permitAll()"/>-->
+        <!--<intercept-url pattern="/registration/**" access="permitAll()"/>-->
+        <intercept-url pattern="/activation*" access="permitAll()"/>
+        <!--<intercept-url pattern="/cabinet*" access="hasRole('ROLE_USER')"/>-->
+        <!--<intercept-url pattern="/regsuccess" access="hasRole('ROLE_USER')"/>-->
+        <!--<intercept-url pattern="/cabinet/*" access="hasRole('ROLE_USER')"/>-->
+        <!--<intercept-url pattern="/search/**" access="hasRole('ROLE_USER')"/>-->
+        <!--<intercept-url pattern="/search*" access="hasRole('ROLE_USER')"/>-->
+        <intercept-url pattern="/settings/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/settings*" access="hasRole('ROLE_USER')"/>
+
+        <intercept-url pattern="/avatar/**" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/avatar*" access="hasRole('ROLE_USER')"/>
+
+        <intercept-url pattern="/news/**" access="permitAll()"/>
+        <intercept-url pattern="/news*" access="permitAll()"/>
+
+        <intercept-url pattern="/embed_news*" access="permitAll()"/>
+        <!--<intercept-url pattern="/**" access="denyAll()"/>-->
+
+        <custom-filter ref="customLogoutFilter" position="LOGOUT_FILTER"/>
+        <custom-filter ref="customRememberMeAuthenticationFilter" position="REMEMBER_ME_FILTER"/>
+        <custom-filter ref="usernamePasswordAuthenticationFilter" position="FORM_LOGIN_FILTER"/>
+    </http>
+
+    <beans:bean id="reCaptcha" class="net.tanesha.recaptcha.ReCaptchaImpl">
+        <beans:property name="privateKey" value="6LcgVNASAAAAAIxetpISvu7IcxoonqGF9SeO90wR"/>
+        <beans:property name="publicKey" value="6LcgVNASAAAAAJAXtMZcPB6xbblkFqiOq92v0Vdm"/>
+        <beans:property name="includeNoscript" value="false"/>
+        <beans:property name="recaptchaServer" value="http://www.google.com/recaptcha/api"/>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" id="passwordEncoder"/>
+
+    <authentication-manager alias="authentication-manager">
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <!--логин для корневого админа-->
+            <password-encoder hash="sha" ref="passwordEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <global-method-security pre-post-annotations="enabled"/>
+</beans:beans>

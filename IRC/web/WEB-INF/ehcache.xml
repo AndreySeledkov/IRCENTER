@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">
+    <defaultCache eternal="true" maxElementsInMemory="100" overflowToDisk="false"/>
+
+    <cache name="countries" maxElementsInMemory="220" eternal="true" overflowToDisk="false"/>
+    <cache name="regions" maxElementsInMemory="1711" eternal="true" overflowToDisk="false"/>
+    <cache name="cities" maxElementsInMemory="64000" eternal="true" overflowToDisk="false"/>
+    <cache name="newsChapters" maxElementsInMemory="100" eternal="true" overflowToDisk="false"/>
+    <cache name="newsParts" maxElementsInMemory="100" eternal="true" overflowToDisk="false"/>
+    <cache name="news" maxElementsInMemory="10000" eternal="true" overflowToDisk="false"/>
+    <cache name="calendarEvent" maxElementsInMemory="1000" eternal="true" overflowToDisk="false"/>
+    <cache name="slider" maxElementsInMemory="10000" eternal="true" overflowToDisk="false"/>
+    <cache name="newsComments" maxElementsInMemory="50000" eternal="true" overflowToDisk="false"/>
+    <cache name="likeQuantityCache" maxElementsInMemory="50000" eternal="true" overflowToDisk="false"/>
+    <cache name="likeEntityCache" maxElementsInMemory="50000" eternal="true" overflowToDisk="false"/>
+    <cache name="userOptions" maxElementsInMemory="50000" eternal="true" overflowToDisk="false"/>
+    <cache name="minutestogod" maxElementsInMemory="1000" eternal="true" overflowToDisk="false"/>
+    <cache name="secretspiritualworld" maxElementsInMemory="1000" eternal="true" overflowToDisk="false"/>
+    <cache name="tvevidence" maxElementsInMemory="1000" eternal="true" overflowToDisk="false"/>
+    <cache name="videoevidence" maxElementsInMemory="1000" eternal="true" overflowToDisk="false"/>
+</ehcache>

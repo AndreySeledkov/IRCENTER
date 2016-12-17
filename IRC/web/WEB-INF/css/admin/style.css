@@ -1,0 +1,141 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    font-family: Trebuchet MS;
+    font-size: 14px;
+    color: #000000;
+    float: left;
+}
+
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #333333;
+}
+
+/* - - - CLASSES - - - */
+#header_sidebar .fl_left {
+    margin-left: 20px;
+}
+
+#header_sidebar .fl_right {
+    margin-right: 20px;
+}
+
+#header_sidebar .fl_left a {
+    float: left;
+}
+
+#header_sidebar .fl_right a {
+    float: right;
+}
+
+.sep10 {
+    display: block;
+    height: 10px;
+}
+
+.fl_left {
+    float: left;
+}
+
+.fl_right {
+    float: right;
+}
+
+.out_box {
+    display: block;
+    padding: 5px;
+}
+
+/* - - - END CLASSES - - - */
+
+/* - - - CONTENT - - - */
+#content_out {
+    overflow: hidden;
+    display: block;
+    width: 250x;
+    margin: 0 auto;
+}
+
+#left_sidebar {
+    float: left;
+    display: block;
+    width: 250px;
+}
+
+#left_sidebar ul.category {
+    overflow: hidden;
+    display: block;
+    width: 240px;
+    height: 24px;
+    margin: 5px 5px 0px 5px;
+    padding: 0;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    line-height: 24px;
+    list-style: none;
+}
+
+#left_sidebar ul.category.open {
+    height: auto;
+}
+
+#left_sidebar ul.category li.header a {
+    display: block;
+    width: 235px;
+    height: 24px;
+    padding-left: 5px;
+    background: url(/static/img/admin/product_group_header_bg.gif) repeat-x;
+    border-radius: 4px;
+    line-height: 24px;
+    color: #D4D4D4;
+}
+
+#left_sidebar ul.category li.header a:hover {
+    background-position: 0 -25px;
+}
+
+#left_sidebar ul.category.open li.header a {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: #FFFFFF;
+}
+
+#left_sidebar ul.category li.group a {
+    display: block;
+    width: 235px;
+    height: 20px;
+    margin-top: 1px;
+    margin-bottom: 3px;
+    padding-left: 5px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #505050;
+}
+
+#left_sidebar ul.category li.group.select a {
+    font-weight: bold;
+    color: #000000;
+}
+
+#left_sidebar ul.category li.group a:hover {
+    background: #FAFAFA;
+}
+
+#content {
+    display: block;
+    width: 764px;
+    margin: auto;
+    margin-left: 250px;
+    background: #F7F7F7;
+    -moz-border-radius: 0px 0px 20px 20px;
+    -webkit-border-radius: 0px 0px 20px 20px;
+    border-radius: 0px 0px 20px 20px;
+}
+
+/* - - - END CONTENT - - - */

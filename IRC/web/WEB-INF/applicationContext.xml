@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:util="http://www.springframework.org/schema/util"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+             xmlns:beans="http://www.springframework.org/schema/beans">
+
+
+    <beans:beans profile="local-dev, test-dev,production-dev">
+
+        <!-- set your analyzer, to be used by the IndexWriter and QueryParser -->
+        <util:constant id="LUCENE_VERSION" static-field="org.apache.lucene.util.Version.LUCENE_36"/>
+        <bean id="luceneAnalyzer" class="org.apache.lucene.analysis.standard.StandardAnalyzer">
+            <constructor-arg ref="LUCENE_VERSION"/>
+        </bean>
+
+        <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+
+        <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations">
+                <list>
+                    <value>WEB-INF/run.properties</value>
+                    <value>WEB-INF/log4j.properties</value>
+                </list>
+            </property>
+        </bean>
+
+        <bean id="transactionManager"
+              class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+            <property name="dataSource" ref="dataSource"/>
+        </bean>
+
+        <bean id="customLogoutFilter" class="org.ircenter.server.service.authentication.CustomLogoutFilter">
+            <constructor-arg value="/"/>
+            <constructor-arg>
+                <array>
+                    <ref local="securityContextLogoutHandler"/>
+                    <ref local="persistentTokenBasedRememberMeServices"/>
+                </array>
+            </constructor-arg>
+            <property name="filterProcessesUrl" value="/j_spring_security_logout"/>
+        </bean>
+
+        <bean id="securityContextLogoutHandler"
+              class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
+
+        <bean id="persistentTokenBasedRememberMeServices"
+              class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+            <property name="key" value="SpringSecured"/>
+            <property name="userDetailsService" ref="customUserDetailsService"/>
+            <property name="tokenRepository" ref="jdbcTokenRepositoryImpl"/>
+        </bean>
+
+        <bean id="customRememberMeAuthenticationFilter"
+              class="org.ircenter.server.service.authentication.CustomRememberMeAuthenticationFilter">
+            <property name="authenticationManager" ref="customAuthenticationManager"/>
+            <property name="rememberMeServices" ref="persistentTokenBasedRememberMeServices"/>
+        </bean>
+
+        <bean id="rememberMeAuthenticationProvider"
+              class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+            <property name="key" value="SpringSecured"/>
+        </bean>
+
+        <bean id="usernamePasswordAuthenticationFilter"
+              class="org.ircenter.server.service.authentication.CustomUsernamePasswordAuthenticationFilter">
+            <property name="authenticationManager" ref="customAuthenticationManager"/>
+            <property name="rememberMeServices" ref="persistentTokenBasedRememberMeServices"/>
+            <property name="authenticationFailureHandler" ref="failureHandler"/>
+            <property name="authenticationSuccessHandler" ref="successHandler"/>
+        </bean>
+
+        <bean id="successHandler"
+              class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+            <property name="useReferer" value="true"/>
+            <property name="alwaysUseDefaultTargetUrl" value="true"/>
+            <property name="defaultTargetUrl" value="/"/>
+        </bean>
+        <bean id="failureHandler"
+              class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">
+            <property name="defaultFailureUrl" value="/auth"/>
+        </bean>
+
+        <bean id="authenticationEntryPoint"
+              class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+            <property name="loginFormUrl" value="/auth"/>
+        </bean>
+
+        <bean id="customAuthenticationManager" class="org.springframework.security.authentication.ProviderManager">
+            <property name="providers">
+                <list>
+                    <ref local="daoAuthenticationProvider"/>
+                    <ref local="anonymousAuthenticationProvider"/>
+                    <ref local="rememberMeAuthenticationProvider"/>
+                </list>
+            </property>
+        </bean>
+
+        <bean id="daoAuthenticationProvider"
+              class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+            <property name="userDetailsService" ref="customUserDetailsService"/>
+            <property name="passwordEncoder" ref="passwordEncoder"/>
+        </bean>
+
+        <bean id="anonymousAuthenticationProvider"
+              class="org.springframework.security.authentication.AnonymousAuthenticationProvider">
+            <property name="key" value="BF93JFJ091N00Q7HF"/>
+        </bean>
+
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="maxUploadSize" value="104857600"/>
+        </bean>
+    </beans:beans>
+    <beans:beans profile="local-dev">
+
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+            <property name="driverClass" value="${LOCAL.jdbc.driverClassName}"/>
+            <property name="jdbcUrl" value="${LOCAL.jdbc.url}"/>
+            <property name="user" value="${LOCAL.jdbc.username}"/>
+            <property name="password" value="${LOCAL.jdbc.password}"/>
+            <property name="idleConnectionTestPeriod" value="300"/>
+            <property name="preferredTestQuery" value="SELECT 1"/>
+        </bean>
+
+        <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+            <property name="host" value="${LOCAL.smtp.host}"/>
+            <property name="port" value="${LOCAL.smtp.port}"/>
+            <property name="protocol" value="${LOCAL.smtp.protocol}"/>
+            <property name="username" value="${LOCAL.smtp.username}"/>
+            <property name="password" value="${LOCAL.smtp.password}"/>
+            <property name="javaMailProperties">
+                <props>
+                    <prop key="mail.smtp.auth">${LOCAL.smtp.mail.smtp.auth}</prop>
+                    <prop key="mail.smtp.starttls.enable">${LOCAL.smtp.mail.smtp.starttls.enable}</prop>
+                    <prop key="mail.smtp.quitwait">${LOCAL.smtp.mail.smtp.quitwait}</prop>
+                </props>
+            </property>
+        </bean>
+    </beans:beans>
+
+    <beans:beans profile="test-dev">
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+            <property name="driverClass" value="${TEST.jdbc.driverClassName}"/>
+            <property name="jdbcUrl" value="${TEST.jdbc.url}"/>
+            <property name="user" value="${TEST.jdbc.username}"/>
+            <property name="password" value="${TEST.jdbc.password}"/>
+            <property name="idleConnectionTestPeriod" value="300"/>
+            <property name="preferredTestQuery" value="SELECT 1"/>
+        </bean>
+
+        <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+            <property name="host" value="${TEST.smtp.host}"/>
+            <property name="port" value="${TEST.smtp.port}"/>
+            <property name="protocol" value="${TEST.smtp.protocol}"/>
+            <property name="username" value="${TEST.smtp.username}"/>
+            <property name="password" value="${TEST.smtp.password}"/>
+            <property name="javaMailProperties">
+                <props>
+                    <prop key="mail.smtp.auth">${TEST.smtp.mail.smtp.auth}</prop>
+                    <prop key="mail.smtp.starttls.enable">${TEST.smtp.mail.smtp.starttls.enable}</prop>
+                    <prop key="mail.smtp.quitwait">${TEST.smtp.mail.smtp.quitwait}</prop>
+                </props>
+            </property>
+        </bean>
+    </beans:beans>
+
+    <beans:beans profile="production-dev">
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+            <property name="driverClass" value="${PRODUCTION.jdbc.driverClassName}"/>
+            <property name="jdbcUrl" value="${PRODUCTION.jdbc.url}"/>
+            <property name="user" value="${PRODUCTION.jdbc.username}"/>
+            <property name="password" value="${PRODUCTION.jdbc.password}"/>
+            <property name="idleConnectionTestPeriod" value="300"/>
+            <property name="preferredTestQuery" value="SELECT 1"/>
+        </bean>
+
+        <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+            <property name="host" value="${PRODUCTION.smtp.host}"/>
+            <property name="port" value="${PRODUCTION.smtp.port}"/>
+            <property name="protocol" value="${PRODUCTION.smtp.protocol}"/>
+            <property name="username" value="${PRODUCTION.smtp.username}"/>
+            <property name="password" value="${PRODUCTION.smtp.password}"/>
+            <property name="javaMailProperties">
+                <props>
+                    <prop key="mail.smtp.auth">${PRODUCTION.smtp.mail.smtp.auth}</prop>
+                    <prop key="mail.smtp.starttls.enable">${PRODUCTION.smtp.mail.smtp.starttls.enable}</prop>
+                    <prop key="mail.smtp.quitwait">${PRODUCTION.smtp.mail.smtp.quitwait}</prop>
+                </props>
+            </property>
+        </bean>
+    </beans:beans>
+
+</beans:beans>
